@@ -1,12 +1,7 @@
 <!-- 
     Saulo S L Santos
     Calculadora de funções aritméticas básicas
-    Aceita operacoes como: 
-    <9>
-    <->
-    <=>
-    Resulta em "0"
-    04.05.2020 
+    30.04.2020 
 -->
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -72,19 +67,19 @@
         let memoria = 0.0
         let operacao = ''
         let visor = document.getElementById('visor')
-        let flag=true;
 
         function botao(n){
-            if (visor.value=='0') 
-                visor.value = n
-            else{ 
-                if (!flag){
-                   visor.value=''
-                   flag=true}
-                visor.value += n}
+            if (visor.value == '0') 
+               visor.value = n
+            else 
+               visor.value += n
             if (n == 'C'){
                 visor.value = '0'
-                memoria = 0.0}}
+                memoria = 0.0} 
+            else if (operacao == '#'){
+                visor.value = n
+                operacao = ''}
+        }
 
         function igual() {    
             if (operacao.length == 0) 
@@ -96,14 +91,16 @@
                 else if (operacao == '*') visor.value = memoria * aux
                 else if (aux != 0.0) visor.value = memoria / aux
                 else visor.value = 'divisao por zero'}
-                operacao = ''}
+            operacao = '#'
+        }
 
         function opera(o) {
             if (!isNaN(visor.value)) {
                 memoria = parseFloat(visor.value)
                 operacao = o
-                flag=false;} 
-            else visor.value = '0'}
+                visor.value = ''
+            } else visor.value = '0'
+        }
     </script>
 </body>
 </html>
